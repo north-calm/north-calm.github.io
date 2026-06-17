@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reason Field | Engineering</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0a0a0a;
+            --border: #222222;
+            --fg: #f0f0f0;
+            --muted: #888888;
+            --accent: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Tactile Noise Overlay */
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Structural Layout */
+        .layout-grid {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            border: 1px solid var(--border);
+        }
+
+        /* Left Panel: Content */
+        .panel-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            border-right: 1px solid var(--border);
+            background: var(--bg);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Right Panel: Visual */
+        .panel-visual {
+            flex: 1;
+            position: relative;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Architectural Blueprint Grid on the Visual Panel */
+        .panel-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 3rem 3rem;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .mono-tag {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.75rem;
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        main p {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: #b0b0b0;
+            font-weight: 400;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .system-status {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            max-width: 500px;
+        }
+
+        .status-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .status-title {
+            font-family: ui-monospace, monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
+        .status-detail {
+            font-size: 0.9rem;
+            color: var(--fg);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--muted);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            border-color: var(--accent);
+        }
+
+        /* Canvas strictly confined to right panel */
+        #render-target {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 900px) {
+            .layout-grid {
+                flex-direction: column;
+            }
+            .panel-content {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 2rem;
+            }
+            .panel-visual {
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="noise"></div>
+    
+    <div class="layout-grid">
+        <!-- Left Panel: Clear, stable reading area -->
+        <div class="panel-content">
+            <header>
+                <h1>Reason Field</h1>
+                <div class="mono-tag">Status // Infrastructure Development</div>
+            </header>
+
+            <main>
+                <p>
+                    Operating at the intersection of utility and creativity. We engineer high-efficiency software, interactive entertainment, and bespoke technical solutions designed to solve complex problems with absolute clarity.
+                </p>
+                <p>
+                    Our digital presence is currently being architected. 
+                </p>
+                
+                <div class="system-status">
+                    <div class="status-block">
+                        <span class="status-title">CORE DISCIPLINES</span>
+                        <span class="status-detail">Software Engineering<br>Technical Consultancy<br>Interactive Systems</span>
+                    </div>
+                    <div class="status-block">
+                        <span class="status-title">CONTACT</span>
+                        <span class="status-detail"><a href="mailto:inforeasonfield@gmail.com">inforeasonfield@gmail.com</a></span>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Right Panel: Confined visual/mathematical element -->
+        <div class="panel-visual" id="canvas-container">
+            <canvas id="render-target"></canvas>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Complex Geometry Renderer (Icosahedron)
+         * Kept strictly inside the right panel to avoid text interference.
+         */
+        const container = document.getElementById('canvas-container');
+        const canvas = document.getElementById('render-target');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let angleX = 0;
+        let angleY = 0;
+
+        // Golden ratio for Icosahedron vertices
+        const phi = (1 + Math.sqrt(5)) / 2;
+        
+        // Icosahedron vertices
+        const vertices = [
+            [-1,  phi,  0], [ 1,  phi,  0], [-1, -phi,  0], [ 1, -phi,  0],
+            [ 0, -1,  phi], [ 0,  1,  phi], [ 0, -1, -phi], [ 0,  1, -phi],
+            [ phi,  0, -1], [ phi,  0,  1], [-phi,  0, -1], [-phi,  0,  1]
+        ];
+
+        // Icosahedron edges
+        const edges = [
+            [0,11], [0,5], [0,1], [0,7], [0,10],
+            [1,5], [1,9], [1,8], [1,7],
+            [11,5], [5,9], [9,8], [8,7], [7,10], [10,11],
+            [11,2], [5,4], [9,3], [8,6], [10,6],
+            [2,4], [4,3], [3,6], [6,2],
+            [2,11], [2,10], [4,11], [4,9], [3,9], [3,8], [6,8], [6,10],
+            [2,3] // bottom edge fix
+        ];
+
+        function resize() {
+            // Match canvas size to its container, not the whole window
+            width = container.clientWidth;
+            height = container.clientHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        // 3D Math: Matrix Rotation
+        function rotate(v, ax, ay) {
+            let x = v[0] * Math.cos(ay) - v[2] * Math.sin(ay);
+            let z = v[0] * Math.sin(ay) + v[2] * Math.cos(ay);
+            let y = v[1];
+
+            let y2 = y * Math.cos(ax) - z * Math.sin(ax);
+            let z2 = y * Math.sin(ax) + z * Math.cos(ax);
+
+            return [x, y2, z2];
+        }
+
+        function render() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Scale geometry based on container size
+            const scale = Math.min(width, height) * 0.2;
+            const cx = width / 2;
+            const cy = height / 2;
+
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 1;
+
+            // Draw edges
+            edges.forEach(edge => {
+                const v1 = rotate(vertices[edge[0]], angleX, angleY);
+                const v2 = rotate(vertices[edge[1]], angleX, angleY);
+
+                ctx.moveTo(cx + v1[0] * scale, cy + v1[1] * scale);
+                ctx.lineTo(cx + v2[0] * scale, cy + v2[1] * scale);
+            });
+
+            ctx.stroke();
+
+            // Draw connecting nodes (vertices)
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            vertices.forEach(vertex => {
+                const v = rotate(vertex, angleX, angleY);
+                ctx.beginPath();
+                ctx.arc(cx + v[0] * scale, cy + v[1] * scale, 2, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Smooth, slow rotation
+            angleX += 0.0015;
+            angleY += 0.0025;
+
+            requestAnimationFrame(render);
+        }
+
+        // Handle resizing
+        window.addEventListener('resize', resize);
+        
+        // Boot
+        resize();
+        render();
+    </script>
+</body>
+</html>
