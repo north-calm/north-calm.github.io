@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reason Field work and capabilities.">
+    <title>Work | Reason Field</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .work-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            gap: clamp(2rem, 4vw, 4.5rem);
+            align-items: start;
+        }
+
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.02;
+            letter-spacing: -0.03em;
+            margin-top: 0.8rem;
+            max-width: 11ch;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 14rem;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-top-color: var(--border-glow);
+            transform: translateY(-4px);
+        }
+
+        .card-id {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-mute);
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 2rem;
+        }
+
+        .card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--text-prime);
+        }
+
+        .card p {
+            color: var(--text-mute);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 900px) {
+            .work-hero {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="ambient-field"></div>
+    <header>
+        <a href="index.html" class="logo">Reason Field</a>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="work.html" aria-current="page">Work</a></li>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="work-hero" aria-labelledby="work-title">
+            <div>
+                <span class="section-label">Our capabilities</span>
+                <h1 id="work-title" class="page-title">Systems that still make sense after the first release.</h1>
+                <p class="lead-copy">We build the infrastructure, tooling, and computational systems that teams need when the work is genuinely technical and the details matter.</p>
+                <div class="button-row">
+                    <a href="about.html" class="button-link">How we operate</a>
+                    <a href="careers.html" class="button-link">Join the studio</a>
+                </div>
+            </div>
+
+            <aside class="quote-panel" aria-label="Delivery priorities">
+                <span class="section-label">Delivery priorities</span>
+                <div class="stat-grid">
+                    <article class="stat-card">
+                        <div class="stat-value">01</div>
+                        <p class="stat-label">Performance, memory use, and reliability measured from the beginning.</p>
+                    </article>
+                    <article class="stat-card">
+                        <div class="stat-value">02</div>
+                        <p class="stat-label">Clear interfaces and maintainable systems that reduce future friction.</p>
+                    </article>
+                    <article class="stat-card">
+                        <div class="stat-value">03</div>
+                        <p class="stat-label">Close collaboration with product and technical teams to move fast without guesswork.</p>
+                    </article>
+                </div>
+            </aside>
+        </section>
+
+        <section class="section-shell" aria-labelledby="capabilities-title">
+            <span class="section-label">Selected domains</span>
+            <h2 id="capabilities-title" class="section-title">A broader set of work for teams with specific technical problems.</h2>
+            <div class="service-grid" style="margin-top: 2rem;">
+                <article class="card">
+                    <span class="card-id">SYS // 01</span>
+                    <h2>Low-Level Utilities</h2>
+                    <p>We build efficient utility software that keeps the basics fast, small, and dependable.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-id">GFX // 02</span>
+                    <h2>Graphics & Simulation</h2>
+                    <p>Custom renderers and simulation systems where timing, precision, and control all matter at once.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-id">ARC // 03</span>
+                    <h2>Architectural Consultancy</h2>
+                    <p>Practical engineering guidance for teams that need a clearer path through a complicated stack.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-id">PLT // 04</span>
+                    <h2>Platform Hardening</h2>
+                    <p>We audit and strengthen the operational layer so critical products stay predictable when usage shifts.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-id">EMB // 05</span>
+                    <h2>Embedded Systems</h2>
+                    <p>Firmware paths and hardware-adjacent logic that stay small, direct, and dependable at the point of execution.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-id">AUD // 06</span>
+                    <h2>Technical Audits</h2>
+                    <p>We identify hidden friction in existing systems and return a concrete path for improving speed, resilience, and clarity.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section-shell content-grid" aria-labelledby="delivery-title">
+            <div class="process-panel">
+                <span class="section-label">Delivery model</span>
+                <h2 id="delivery-title" class="section-title">A focused workflow with fewer handoffs.</h2>
+                <ol class="timeline">
+                    <li>
+                        <span class="step">Brief</span>
+                        <div>
+                            <strong>We define the hard constraints.</strong>
+                            <p class="muted-copy">That includes the technical bottlenecks, operational risk, and the outcome the work needs to support.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step">Build</span>
+                        <div>
+                            <strong>We develop the core system with discipline.</strong>
+                            <p class="muted-copy">Implementation stays close to the problem so the resulting system is easier to validate and evolve.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step">Ship</span>
+                        <div>
+                            <strong>We hand over something that can be operated with confidence.</strong>
+                            <p class="muted-copy">Documentation, performance notes, and implementation clarity are part of the deliverable.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="cta-panel">
+                <span class="section-label">Next step</span>
+                <h2 class="section-title">Need a partner for a technical program?</h2>
+                <p class="lead-copy">We work best on problems where engineering judgment matters as much as execution speed.</p>
+                <div class="button-row">
+                    <a href="mailto:inforeasonfield@gmail.com" class="button-link">Start a conversation</a>
+                    <a href="about.html" class="button-link">Learn more</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

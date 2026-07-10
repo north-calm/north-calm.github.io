@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Reason Field and the systems we build.">
+    <title>About | Reason Field</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: start;
+        }
+
+        .sticky-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.25rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            max-width: 10ch;
+        }
+
+        .text-content {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .text-content p {
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 900px) {
+            .about-hero { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="ambient-field"></div>
+    
+    <header>
+        <a href="index.html" class="logo">Reason Field</a>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" aria-current="page">About</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="about-hero" aria-labelledby="about-title">
+            <div class="text-content">
+                <span class="section-label">About Reason Field</span>
+                <h1 id="about-title" class="sticky-heading">We build from first principles.</h1>
+                <p>We are a specialized engineering firm that rejects surface-level abstraction. Most modern software rests on layers of unnecessary complexity. We believe that true performance requires <strong>hardware-aware coding practices</strong> and an uncompromising approach to fundamental architecture.</p>
+                <p>Whether we are designing control software, looking at memory behavior, or helping a team untangle a messy stack, we keep the work close to the mechanics of how it actually runs.</p>
+                <p>We don't try to make the work sound bigger than it is. We try to make it solid, readable, and worth keeping.</p>
+                <div class="button-row">
+                    <a href="work.html" class="button-link">See how we work</a>
+                    <a href="careers.html" class="button-link">Explore careers</a>
+                </div>
+            </div>
+
+            <aside class="quote-panel" aria-label="Reason Field operating principles">
+                <span class="section-label">Operating principles</span>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <h3>Clarity first</h3>
+                        <p>We remove friction from systems and decisions before adding anything new.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Performance as a design rule</h3>
+                        <p>Speed, memory, and reliability are part of the brief, not cleanup work after release.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Direct collaboration</h3>
+                        <p>We stay close to the people using the system so the result stays practical and accountable.</p>
+                    </article>
+                </div>
+            </aside>
+        </section>
+
+        <section class="section-shell" aria-labelledby="about-method-title">
+            <span class="section-label">How we operate</span>
+            <h2 id="about-method-title" class="section-title">A small team with a clear process and no interest in ceremony.</h2>
+            <ul class="timeline">
+                <li>
+                    <span class="step">01</span>
+                    <div>
+                        <strong>Define the constraint.</strong>
+                        <p class="muted-copy">We identify the bottleneck, failure mode, or ambiguity that matters most before the work starts.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="step">02</span>
+                    <div>
+                        <strong>Build the core.</strong>
+                        <p class="muted-copy">We prioritize the most durable path instead of stacking unnecessary layers of process or abstraction.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="step">03</span>
+                    <div>
+                        <strong>Measure the result.</strong>
+                        <p class="muted-copy">We validate the work with performance, clarity, and maintainability so the system can stand on its own.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section-shell cta-panel" aria-labelledby="about-commitment-title">
+            <span class="section-label">What to expect</span>
+            <h2 id="about-commitment-title" class="section-title">We care about the work being solid, not loud.</h2>
+            <p class="lead-copy">If you need a partner that can turn technical complexity into something understandable, measurable, and built to last, we should be in the conversation.</p>
+        </section>
+    </main>
+</body>
+</html>

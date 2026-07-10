@@ -1,0 +1,355 @@
+/* =========================================
+   REASON FIELD - CORE DESIGN SYSTEM
+   ========================================= */
+
+:root {
+    --bg-core: #020203; /* Deepest abyss black */
+    --bg: var(--bg-core);
+    --text-prime: #f4f4f5;
+    --text: var(--text-prime);
+    --text-mute: rgba(255, 255, 255, 0.55);
+    --text-dim: var(--text-mute);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --grid-line: var(--border-subtle);
+    --border-glow: rgba(255, 255, 255, 0.2);
+    --accent: #ffffff;
+}
+
+/* Base Reset & Accessibility */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+*:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
+
+body {
+    background-color: var(--bg-core);
+    color: var(--text-prime);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* The tactile, physical media noise layer */
+    background-image:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.055), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(255, 255, 255, 0.035), transparent 24%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* CSS-Native Ambient Field (Replaces the heavy JS Canvas) */
+.ambient-field {
+    position: fixed;
+    top: -50vh; left: -50vw; 
+    width: 200vw; height: 200vh;
+    /* Creates a massive, subtle volumetric lighting effect */
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+                conic-gradient(from 90deg at 50% 50%, transparent 0deg, rgba(255, 255, 255, 0.01) 90deg, transparent 180deg, rgba(255, 255, 255, 0.01) 270deg, transparent 360deg);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .ambient-field { animation: slowRotate 120s linear infinite; }
+}
+@keyframes slowRotate { 100% { transform: rotate(360deg); } }
+
+/* Global Navigation - Floating Glass Effect */
+header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 4vw;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(2, 2, 3, 0.96) 0%, rgba(2, 2, 3, 0.82) 65%, transparent 100%);
+    backdrop-filter: blur(8px); /* Frosted glass over the ambient field */
+}
+
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-prime);
+    text-decoration: none;
+}
+
+nav ul { display: flex; gap: 3rem; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
+nav a {
+    color: var(--text-mute);
+    text-decoration: none;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+}
+nav a:hover,
+nav a:focus-visible,
+nav a.active,
+nav a[aria-current="page"] {
+    color: var(--text-prime);
+}
+
+/* Layout Structure */
+main {
+    flex: 1;
+    padding: 12vh 4vw 4vw 4vw; /* Space for fixed header */
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute; top: -100px; left: 20px; 
+    background: var(--text-prime); color: var(--bg-core); 
+    padding: 12px 24px; z-index: 1000; text-decoration: none; 
+    font-family: 'Space Grotesk'; font-weight: 500; transition: top 0.3s;
+}
+.skip-link:focus { top: 20px; }
+
+/* Reusable Content System */
+.section-shell {
+    margin-top: clamp(3rem, 6vw, 6rem);
+    position: relative;
+}
+
+.section-shell::before {
+    content: "";
+    position: absolute;
+    top: -1.5rem;
+    left: 0;
+    width: 5rem;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-glow), transparent);
+}
+
+.section-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--text-mute);
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+}
+
+.lead-copy {
+    max-width: 68ch;
+    font-size: 1.05rem;
+    color: var(--text-mute);
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2rem;
+}
+
+.button-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    color: var(--text-prime);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.02);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.button-link:hover,
+.button-link:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--border-glow);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(2rem, 4vw, 5rem);
+    align-items: start;
+}
+
+.stat-grid,
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card,
+.feature-card,
+.quote-panel,
+.cta-panel,
+.process-panel,
+.detail-panel {
+    border: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.stat-card,
+.feature-card,
+.detail-panel {
+    padding: 1.4rem;
+}
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::after,
+.feature-card::after,
+.detail-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 42%);
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.feature-card,
+.detail-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1;
+    margin-bottom: 0.45rem;
+}
+
+.stat-label,
+.card-note,
+.muted-copy {
+    color: var(--text-mute);
+}
+
+.feature-card h3,
+.detail-panel h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+}
+
+.feature-card p,
+.detail-panel p,
+.quote-panel p,
+.process-panel p {
+    color: var(--text-mute);
+}
+
+.feature-card {
+    min-height: 12rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.quote-panel,
+.cta-panel,
+.process-panel {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.quote-panel {
+    border-left: 1px solid var(--border-glow);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent), rgba(255, 255, 255, 0.02);
+}
+
+.quote-panel::before {
+    content: "";
+    display: block;
+    height: 0.25rem;
+    width: 4.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, var(--text-prime), transparent);
+}
+
+.process-panel ol,
+.process-panel ul {
+    margin-top: 1rem;
+    padding-left: 1.2rem;
+    color: var(--text-mute);
+}
+
+.timeline {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.timeline li {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.timeline li strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+.timeline .step {
+    color: var(--text-mute);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+@media (max-width: 900px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        align-items: flex-start;
+    }
+
+    nav ul {
+        justify-content: flex-start;
+        gap: 1rem 1.5rem;
+    }
+}
+
+@media (max-width: 700px) {
+    main {
+        padding-top: 10rem;
+    }
+
+    header {
+        padding-top: 1.4rem;
+        padding-bottom: 1.4rem;
+    }
+
+    .timeline li {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+    }
+}
