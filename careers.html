@@ -45,8 +45,145 @@
             margin-top: 0.6rem;
         }
 
+        .internship-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+            gap: clamp(1.25rem, 3vw, 2rem);
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .internship-brief {
+            border: 1px solid var(--border-subtle);
+            background: linear-gradient(130deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+            border-radius: 1rem;
+            padding: clamp(1.2rem, 2vw, 1.7rem);
+        }
+
+        .internship-brief h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.9rem;
+        }
+
+        .internship-brief p {
+            color: var(--text-mute);
+        }
+
+        .internship-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1rem 0 1.25rem;
+        }
+
+        .internship-tag {
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid var(--border-subtle);
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            color: var(--text-mute);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .internship-points {
+            margin-top: 1rem;
+            list-style: none;
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        .internship-points li {
+            padding-left: 1rem;
+            position: relative;
+            color: var(--text-mute);
+        }
+
+        .internship-points li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 0.45rem;
+            height: 1px;
+            background: var(--border-glow);
+        }
+
+        .apply-panel {
+            border: 1px solid var(--border-subtle);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 1rem;
+            padding: clamp(1.2rem, 2.4vw, 1.8rem);
+        }
+
+        .apply-panel h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 400;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .internship-form {
+            display: grid;
+            gap: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .internship-form label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: var(--text-mute);
+        }
+
+        .internship-form input,
+        .internship-form textarea,
+        .internship-form select {
+            width: 100%;
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.7rem;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-prime);
+            padding: 0.75rem 0.85rem;
+            font: inherit;
+        }
+
+        .internship-form textarea {
+            min-height: 7.5rem;
+            resize: vertical;
+        }
+
+        .internship-form button {
+            margin-top: 0.4rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-prime);
+            padding: 0.82rem 1.05rem;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .internship-form button:hover,
+        .internship-form button:focus-visible {
+            transform: translateY(-2px);
+            border-color: var(--border-glow);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
         @media (max-width: 900px) {
             .careers-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .internship-layout {
                 grid-template-columns: 1fr;
             }
         }
@@ -77,6 +214,7 @@
                 <p>Bring us work you are proud of, even if it is unfinished. Clear thinking matters more here than polished phrasing.</p>
                 <div class="button-row">
                     <a href="mailto:contact@reasonfield.in" class="button-link">Apply by email</a>
+                    <a href="#internships" class="button-link">Apply on website</a>
                     <a href="work.html" class="button-link">See our work</a>
                 </div>
             </div>
@@ -120,6 +258,81 @@
                     <h3>Measured outcomes</h3>
                     <p>We care about performance, clarity, and trustworthiness because those are the traits people remember.</p>
                 </article>
+            </div>
+        </section>
+
+        <section id="internships" class="section-shell" aria-labelledby="internships-title">
+            <span class="section-label">Internships</span>
+            <h2 id="internships-title" class="section-title">Systems Programmer Intern for high-performance simulation software.</h2>
+            <p class="lead-copy" style="margin-top: 1rem;">This is a focused internship for builders who enjoy low-level performance work, careful profiling, and clear systems reasoning.</p>
+            <div class="button-row" style="margin-top: 1.25rem;">
+                <a href="#internships" class="button-link">Direct section link</a>
+                <a href="https://reasonfield.in/careers.html#internships" class="button-link">Share internship URL</a>
+            </div>
+
+            <div class="internship-layout">
+                <article class="internship-brief" aria-label="Internship role details">
+                    <h3>What you will work on</h3>
+                    <div class="internship-tags">
+                        <span class="internship-tag">Simulation Core</span>
+                        <span class="internship-tag">Performance Engineering</span>
+                        <span class="internship-tag">Systems Design</span>
+                    </div>
+                    <p>As a Systems Programmer Intern, your primary work will be on high-performance simulation software: improving runtime characteristics, refining data flow, and helping us push correctness and speed together.</p>
+                    <ul class="internship-points">
+                        <li>Contribute to simulation modules with attention to memory and throughput.</li>
+                        <li>Profile execution paths and remove bottlenecks with measurable outcomes.</li>
+                        <li>Collaborate on architecture decisions that keep the system robust under scale.</li>
+                        <li>Document tradeoffs and implementation choices with technical clarity.</li>
+                    </ul>
+
+                    <div class="detail-panel" style="margin-top: 1.2rem;">
+                        <h3>What the internship experience looks like</h3>
+                        <ul class="internship-points" style="margin-top: 0.75rem;">
+                            <li>Once you apply, we carefully review your application and project links.</li>
+                            <li>If there is a fit, we contact you directly to get to know you better through a short conversation.</li>
+                            <li>The internship duration is around 8 weeks, with clear milestones and hands-on engineering work.</li>
+                            <li>Strong outcomes can open many opportunities, from capital rewards to company equity.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <aside class="apply-panel" aria-label="Internship application form">
+                    <span class="section-label">Apply on Website</span>
+                    <h3>Apply for Systems Programmer Intern</h3>
+                    <p class="muted-copy">Share your details and strongest project. Applications are sent directly to our team.</p>
+                    <p class="muted-copy" style="margin-top: 0.55rem;">Internship duration: around 8 weeks.</p>
+
+                    <form class="internship-form" action="https://formsubmit.co/contact@reasonfield.in" method="POST">
+                        <input type="hidden" name="_subject" value="Internship Application - Systems Programmer Intern">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="Role" value="Systems Programmer Intern">
+
+                        <label for="intern-name">Full name</label>
+                        <input id="intern-name" name="name" type="text" autocomplete="name" required>
+
+                        <label for="intern-email">Email</label>
+                        <input id="intern-email" name="email" type="email" autocomplete="email" required>
+
+                        <label for="intern-links">Portfolio or GitHub link</label>
+                        <input id="intern-links" name="portfolio" type="url" placeholder="https://" required>
+
+                        <label for="intern-language">Primary language</label>
+                        <select id="intern-language" name="primary_language" required>
+                            <option value="" selected disabled>Select one</option>
+                            <option value="C">C</option>
+                            <option value="C++">C++</option>
+                            <option value="Rust">Rust</option>
+                            <option value="Zig">Zig</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <label for="intern-note">Why this internship</label>
+                        <textarea id="intern-note" name="note" placeholder="Tell us what you have built and what kind of systems problems you want to solve." required></textarea>
+
+                        <button type="submit">Submit application</button>
+                    </form>
+                </aside>
             </div>
         </section>
 
