@@ -303,10 +303,7 @@
                     <p class="muted-copy">Share your details and strongest project. Applications are sent directly to our team.</p>
                     <p class="muted-copy" style="margin-top: 0.55rem;">Internship duration: around 8 weeks.</p>
 
-                    <form class="internship-form" action="https://formsubmit.co/contact@reasonfield.in" method="POST">
-                        <input type="hidden" name="_subject" value="Internship Application - Systems Programmer Intern">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="Role" value="Systems Programmer Intern">
+                    <form id="internship-application-form" class="internship-form" action="#" method="POST">
 
                         <label for="intern-name">Full name</label>
                         <input id="intern-name" name="name" type="text" autocomplete="name" required>
@@ -330,7 +327,7 @@
                         <label for="intern-note">Why this internship</label>
                         <textarea id="intern-note" name="note" placeholder="Tell us what you have built and what kind of systems problems you want to solve." required></textarea>
 
-                        <button type="submit">Submit application</button>
+                        <button type="submit">Send application email</button>
                     </form>
                 </aside>
             </div>
@@ -376,5 +373,42 @@
             </div>
         </section>
     </main>
+
+    <script>
+        (function () {
+            var form = document.getElementById('internship-application-form');
+            if (!form) {
+                return;
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                var name = document.getElementById('intern-name').value.trim();
+                var email = document.getElementById('intern-email').value.trim();
+                var portfolio = document.getElementById('intern-links').value.trim();
+                var language = document.getElementById('intern-language').value;
+                var note = document.getElementById('intern-note').value.trim();
+
+                var subject = 'Internship Application - Systems Programmer Intern';
+                var lines = [
+                    'Role: Systems Programmer Intern',
+                    'Duration: Around 8 weeks',
+                    '',
+                    'Full name: ' + name,
+                    'Email: ' + email,
+                    'Portfolio/GitHub: ' + portfolio,
+                    'Primary language: ' + language,
+                    '',
+                    'Why this internship:',
+                    note
+                ];
+
+                var body = encodeURIComponent(lines.join('\n'));
+                var mailto = 'mailto:contact@reasonfield.in?subject=' + encodeURIComponent(subject) + '&body=' + body;
+                window.location.href = mailto;
+            });
+        })();
+    </script>
 </body>
 </html>
