@@ -303,7 +303,7 @@
                     <p class="muted-copy">Share your details and strongest project. Applications are sent directly to our team.</p>
                     <p class="muted-copy" style="margin-top: 0.55rem;">Internship duration: around 8 weeks.</p>
 
-                    <form id="internship-application-form" class="internship-form" action="#" method="POST">
+                    <form id="internship-application-form" class="internship-form" novalidate>
 
                         <label for="intern-name">Full name</label>
                         <input id="intern-name" name="name" type="text" autocomplete="name" required>
@@ -327,7 +327,7 @@
                         <label for="intern-note">Why this internship</label>
                         <textarea id="intern-note" name="note" placeholder="Tell us what you have built and what kind of systems problems you want to solve." required></textarea>
 
-                        <button type="submit">Send application email</button>
+                        <button id="internship-send-button" type="button">Send application email</button>
                     </form>
                 </aside>
             </div>
@@ -377,12 +377,16 @@
     <script>
         (function () {
             var form = document.getElementById('internship-application-form');
+            var sendButton = document.getElementById('internship-send-button');
             if (!form) {
                 return;
             }
 
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
+            var sendApplicationEmail = function () {
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
 
                 var name = document.getElementById('intern-name').value.trim();
                 var email = document.getElementById('intern-email').value.trim();
@@ -407,7 +411,15 @@
                 var body = encodeURIComponent(lines.join('\n'));
                 var mailto = 'mailto:contact@reasonfield.in?subject=' + encodeURIComponent(subject) + '&body=' + body;
                 window.location.href = mailto;
+            };
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
             });
+
+            if (sendButton) {
+                sendButton.addEventListener('click', sendApplicationEmail);
+            }
         })();
     </script>
 </body>
